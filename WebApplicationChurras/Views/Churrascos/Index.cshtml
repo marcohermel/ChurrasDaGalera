@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplicationChurras.Models.Churrasco>
+
+@{
+    ViewData["Title"] = "Churrascos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Adicionar Novo</a>
+</p>
+<table class="table">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+               Participantes
+            </th>
+            <th>
+               Total Arrecadado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {       
+            <tr>
+                <td>
+                    @item.Data.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @item.Participantes.Count()
+                </td>
+                <td>
+                 R$  @item.Participantes.Sum(p => p.ValorContribuicao)
+                </td>
+                <td>
+                    <a asp-action="Create" asp-controller="Participantes" asp-route-churrascoID="@item.ChurrascoID">Adicionar Participante</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ChurrascoID">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ChurrascoID">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ChurrascoID">Deletar</a>
+                </td>
+            </tr>
+        
+        }
+    </tbody>
+</table>

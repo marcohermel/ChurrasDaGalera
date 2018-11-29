@@ -1,0 +1,100 @@
+﻿@model WebApplicationChurras.Models.Churrasco
+
+@{
+    ViewData["Title"] = "Detalhes do Churrasco";
+}
+
+<h2>@(Model.Descricao + " - " + Model.Data.ToShortDateString())</h2>
+
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <dl class="dl-horizontal">    
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorSugeridoComBebida)
+        </dt>
+        <dd>
+         R$    @Html.DisplayFor(model => model.ValorSugeridoComBebida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorSugeridoSemBebida)
+        </dt>
+        <dd>
+            R$   @Html.DisplayFor(model => model.ValorSugeridoSemBebida)
+        </dd>
+        <dt>
+            @Html.Label("Total Participantes")
+        </dt>
+        <dd>
+            @Model.Participantes.Count()
+        </dd>
+        <dt>
+            @Html.Label("Valor a ser arrecadado")
+        </dt>
+        <dd>
+            R$   @Model.Participantes.Sum(p => p.ValorContribuicao)
+        </dd>
+        <dt>
+            @Html.Label("Valor já pago")
+        </dt>
+        <dd>
+            R$   @Model.Participantes.Where(p => p.Pago == true).Sum(p => p.ValorContribuicao)
+        </dd>
+        <dt>
+            @Html.Label("Total de Bebuns")
+        </dt>
+        <dd>
+            @Model.Participantes.Where(p => p.ComBebida == true).Count()
+        </dd>
+        <dt>
+            @Html.Label("Total de Saudáveis")
+        </dt>
+        <dd>
+            @Model.Participantes.Where(p => p.ComBebida == false).Count()
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Participantes</h4>
+    <hr />
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Valor Contribuido</th>
+                <th>Pago?</th>
+                <th>Com Bebida?</th>
+                <th>Observação</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participante in Model.Participantes)
+            {
+                <tr>
+                    <td> @participante.Nome </td>
+                    <td> R$ @participante.ValorContribuicao </td>
+                    <td> @( participante.Pago ? "Sim" : "Não" ) </td>
+                    <td> @( participante.ComBebida ? "Sim" : "Não") </td>
+                    <td> @participante.Observacao </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Editar</a> |
+                        <a asp-action="Details" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Detalhes</a> |
+                        <a asp-action="Delete" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ChurrascoID">Editar</a> |
+    <a asp-action="Create" asp-controller="Participantes" asp-route-churrascoID="@Model.ChurrascoID">Adicionar Participante</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

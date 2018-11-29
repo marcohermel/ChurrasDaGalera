@@ -1,0 +1,43 @@
+﻿@model WebApplicationChurras.Models.Participante
+
+@{
+    ViewData["Title"] = "Detalhes do Participante";
+}
+
+<h2>@Model.Nome</h2>
+
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComBebida)
+        </dt>
+        <dd>
+            @( Model.ComBebida ? "Sim" : "Não" )
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorContribuicao)
+        </dt>
+        <dd>
+           R$ @Html.DisplayFor(model => model.ValorContribuicao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pago)
+        </dt>
+        <dd>
+            @( Model.Pago ? "Sim" : "Não" )
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ParticipanteID">Editar</a> |
+    <a asp-action="Details" asp-controller="Churrascos" asp-route-id="@Model.ChurrascoID">Voltar</a>
+</div>

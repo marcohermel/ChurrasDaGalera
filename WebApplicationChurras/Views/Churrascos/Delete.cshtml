@@ -1,0 +1,19 @@
+﻿@model WebApplicationChurras.Models.Churrasco
+
+@{
+    ViewData["Title"] = "Deletar Churrasco";
+}
+
+<h2>@(Model.Descricao + " - " + Model.Data.ToShortDateString())</h2>
+
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <h3>Você tem certeza que deseja deletar o churrasco?</h3>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ChurrascoID" />
+        <input type="submit" value="Deletar" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar</a>
+    </form>
+</div>

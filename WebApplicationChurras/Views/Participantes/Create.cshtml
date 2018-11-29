@@ -1,0 +1,71 @@
+﻿@model WebApplicationChurras.Models.Participante
+
+@{
+    ViewData["Title"] = "Adicionar Participante";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <input type="hidden" asp-for="ChurrascoID" />
+            <input type="hidden" id="hdnValorCom" value="@ViewBag.ValorCom" />
+            <input type="hidden" id="hdnValorSem" value="@ViewBag.ValorSem" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" asp-for="ComBebida" value="true" /> Com Bebida &nbsp;
+                <input type="radio" asp-for="ComBebida" value="false" /> Sem Bebida
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorContribuicao" class="control-label"></label>
+                <input asp-for="ValorContribuicao" class="form-control money" />
+                <span asp-validation-for="ValorContribuicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacao" class="control-label"></label>
+                <textarea asp-for="Observacao" class="form-control" maxlength="4000"></textarea>
+                <span asp-validation-for="Observacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Pago" /> @Html.DisplayNameFor(model => model.Pago)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Details" asp-controller="Churrascos" asp-route-id="@Model.ChurrascoID">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            $("input[name=ComBebida]").click(function () {
+                verificaValorComOuSemBebida_SugereValor();
+            });
+        });
+
+        function verificaValorComOuSemBebida_SugereValor() { 
+            if ($("input[value=true]:radio").prop("checked")) {
+                $("#@nameof(Model.ValorContribuicao)").val($("#hdnValorCom").val());
+            } else {
+                $("#@nameof(Model.ValorContribuicao)").val($("#hdnValorSem").val());
+            }
+        }
+    </script>
+}
