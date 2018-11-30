@@ -9,4 +9,4 @@ Arquitetura: Padrão MVC
 
 
 Como Rodar:
-Abrir no Visual Studio e rodar normalmente no IIS express
+Abrir a Solution no Visual Studio e rodar normalmente no IIS express
