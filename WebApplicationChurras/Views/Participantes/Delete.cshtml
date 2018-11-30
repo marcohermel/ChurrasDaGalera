@@ -41,10 +41,9 @@
             @Html.DisplayFor(model => model.Observacao)
         </dd>
     </dl>
-    
     <form asp-action="Delete">
         <input type="hidden" asp-for="ParticipanteID" />
-        <input type="submit" value="Deletar" class="btn btn-default" /> |
-        <a asp-action="Details" asp-controller="Churrascos" asp-route-id="@Model.ChurrascoID">Voltar</a>
+        <a asp-action="Details" class="btn btn-outline-secondary" asp-controller="Churrascos" asp-route-id="@Model.ChurrascoID">Voltar</a>
+        <input type="submit" value="Deletar" class="btn btn-outline-danger" />
     </form>
 </div>

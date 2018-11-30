@@ -7,11 +7,10 @@
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Adicionar Novo</a>
+    <a asp-action="Create" class="btn btn-sm btn-outline-dark">Adicionar Novo +</a>
 </p>
 <table class="table table-sm table-hover table-striped">
-    <thead>
-
+    <thead >
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Data)
@@ -45,10 +44,10 @@
                  R$  @item.Participantes.Sum(p => p.ValorContribuicao)
                 </td>
                 <td>
-                    <a asp-action="Create" asp-controller="Participantes" asp-route-churrascoID="@item.ChurrascoID">Adicionar Participante</a> |
-                    <a asp-action="Edit" asp-route-id="@item.ChurrascoID">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.ChurrascoID">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ChurrascoID">Deletar</a>
+                    <a asp-action="Create" class="btn btn-sm btn-outline-dark" asp-controller="Participantes" asp-route-churrascoID="@item.ChurrascoID">Adicionar Participante +</a> |
+                    <a asp-action="Edit" class="btn btn-sm btn-outline-dark" asp-route-id="@item.ChurrascoID">Editar</a> |
+                    <a asp-action="Details" class="btn btn-sm btn-outline-dark" asp-route-id="@item.ChurrascoID">Detalhes</a> |
+                    <a asp-action="Delete" class="btn btn-sm btn-outline-danger" asp-route-id="@item.ChurrascoID">Deletar</a>
                 </td>
             </tr>
         

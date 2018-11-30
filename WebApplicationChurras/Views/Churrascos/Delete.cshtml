@@ -12,8 +12,9 @@
     <h3>Você tem certeza que deseja deletar o churrasco?</h3>
 
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ChurrascoID" />
-        <input type="submit" value="Deletar" class="btn btn-default" /> |
-        <a asp-action="Index">Voltar</a>
+        <input type="hidden" asp-for="ChurrascoID" /> 
+        <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        <input type="submit" value="Deletar" class="btn btn-outline-danger" /> 
+
     </form>
 </div>

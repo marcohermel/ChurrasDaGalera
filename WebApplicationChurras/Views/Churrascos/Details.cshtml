@@ -9,62 +9,67 @@
 <div>
     <h4>@ViewData["Title"]</h4>
     <hr />
-    <dl class="dl-horizontal">    
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Observacao)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorSugeridoComBebida)
-        </dt>
-        <dd>
-         R$    @Html.DisplayFor(model => model.ValorSugeridoComBebida)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorSugeridoSemBebida)
-        </dt>
-        <dd>
+    <form>
+        <div class="form-row">
+            <div class="col-lg-2">
+                <label class="bold"> @Html.DisplayNameFor(model => model.Observacao)</label>
+            </div>
+            <div class="col-lg-10">
+                @Html.DisplayFor(model => model.Observacao)
+            </div>
+        </div>
+    </form>
+    <ul class="list-group margin">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold">   @Html.DisplayNameFor(model => model.ValorSugeridoSemBebida)</label>
             R$   @Html.DisplayFor(model => model.ValorSugeridoSemBebida)
-        </dd>
-        <dt>
-            @Html.Label("Total Participantes")
-        </dt>
-        <dd>
-            @Model.Participantes.Count()
-        </dd>
-        <dt>
-            @Html.Label("Valor a ser arrecadado")
-        </dt>
-        <dd>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold"> @Html.DisplayNameFor(model => model.ValorSugeridoComBebida)</label>
+            R$  @Html.DisplayFor(model => model.ValorSugeridoComBebida)
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold"> Valor a ser arrecadado</label>
             R$   @Model.Participantes.Sum(p => p.ValorContribuicao)
-        </dd>
-        <dt>
-            @Html.Label("Valor já pago")
-        </dt>
-        <dd>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold">
+                Valor já pago
+            </label>
             R$   @Model.Participantes.Where(p => p.Pago == true).Sum(p => p.ValorContribuicao)
-        </dd>
-        <dt>
-            @Html.Label("Total de Bebuns")
-        </dt>
-        <dd>
-            @Model.Participantes.Where(p => p.ComBebida == true).Count()
-        </dd>
-        <dt>
-            @Html.Label("Total de Saudáveis")
-        </dt>
-        <dd>
-            @Model.Participantes.Where(p => p.ComBebida == false).Count()
-        </dd>
-    </dl>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold">
+                Total Participantes
+            </label>
+            <span class="badge badge-dark badge-pill"> @Model.Participantes.Count() </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold">
+                Total de Bebuns
+            </label>
+            <span class="badge badge-dark badge-pill"> @Model.Participantes.Where(p => p.ComBebida == true).Count()</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <label class="bold">
+                Total de Saudáveis
+            </label>
+            <span class="badge badge-dark badge-pill">  @Model.Participantes.Where(p => p.ComBebida == false).Count() </span>
+        </li>
+    </ul>
+</div>
+<div class="margin">
+    <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+    <a asp-action="Edit" class="btn btn-outline-dark" asp-route-id="@Model.ChurrascoID">Editar</a>
+    <a asp-action="Create" class="btn btn-outline-dark" asp-controller="Participantes" asp-route-churrascoID="@Model.ChurrascoID">Adicionar Participante +</a>
 </div>
 <div>
     <h4>Participantes</h4>
     <hr />
     <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>Nome</th>
                 <th>Valor Contribuido</th>
@@ -84,17 +89,13 @@
                     <td> @( participante.ComBebida ? "Sim" : "Não") </td>
                     <td> @participante.Observacao </td>
                     <td>
-                        <a asp-action="Edit" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Editar</a> |
-                        <a asp-action="Details" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Detalhes</a> |
-                        <a asp-action="Delete" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Deletar</a>
+                        <a asp-action="Edit" class="btn  btn-sm btn-outline-dark" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Editar</a> |
+                        <a asp-action="Details" class="btn  btn-sm btn-outline-dark" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Detalhes</a> |
+                        <a asp-action="Delete" class="btn  btn-sm btn-outline-danger" asp-controller="Participantes" asp-route-id="@participante.ParticipanteID">Deletar</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ChurrascoID">Editar</a> |
-    <a asp-action="Create" asp-controller="Participantes" asp-route-churrascoID="@Model.ChurrascoID">Adicionar Participante</a> |
-    <a asp-action="Index">Voltar</a>
-</div>
+
