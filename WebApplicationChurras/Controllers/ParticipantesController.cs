@@ -49,7 +49,7 @@ namespace WebApplicationChurras.Controllers
                 return NotFound();
 
             Participante p = new Participante();
-            p.ComBebida = true;
+            p.ComBebida = false;
             Churrasco churras = _context.Churrascos.FirstOrDefault(c => c.ChurrascoID == churrascoID);
             ViewBag.ValorCom = churras.ValorSugeridoComBebida;
             ViewBag.ValorSem = churras.ValorSugeridoSemBebida;
