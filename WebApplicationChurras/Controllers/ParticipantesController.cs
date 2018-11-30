@@ -53,7 +53,7 @@ namespace WebApplicationChurras.Controllers
             Churrasco churras = _context.Churrascos.FirstOrDefault(c => c.ChurrascoID == churrascoID);
             ViewBag.ValorCom = churras.ValorSugeridoComBebida;
             ViewBag.ValorSem = churras.ValorSugeridoSemBebida;
-            p.ValorContribuicao = churras.ValorSugeridoComBebida;
+            p.ValorContribuicao = churras.ValorSugeridoSemBebida;
             p.ChurrascoID = (int)churrascoID;
 
             return View(p);
