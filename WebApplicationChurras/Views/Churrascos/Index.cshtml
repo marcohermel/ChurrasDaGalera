@@ -10,7 +10,7 @@
     <a asp-action="Create" class="btn btn-sm btn-outline-dark">Adicionar Novo +</a>
 </p>
 <table class="table table-sm table-hover table-striped">
-    <thead >
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Data)
@@ -19,17 +19,17 @@
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
-               Participantes
+                Participantes
             </th>
             <th>
-               Total Arrecadado
+                Total Arrecadado
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {       
+        {
             <tr>
                 <td>
                     @item.Data.ToShortDateString()
@@ -38,10 +38,10 @@
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
-                    @item.Participantes.Count()
+                    <span class="badge badge-dark badge-pill">    @item.Participantes.Count() </span>
                 </td>
                 <td>
-                 R$  @item.Participantes.Sum(p => p.ValorContribuicao)
+                    R$  @item.Participantes.Sum(p => p.ValorContribuicao)
                 </td>
                 <td>
                     <a asp-action="Create" class="btn btn-sm btn-outline-dark" asp-controller="Participantes" asp-route-churrascoID="@item.ChurrascoID">Adicionar Participante +</a> |
@@ -50,7 +50,7 @@
                     <a asp-action="Delete" class="btn btn-sm btn-outline-danger" asp-route-id="@item.ChurrascoID">Deletar</a>
                 </td>
             </tr>
-        
+
         }
     </tbody>
 </table>
