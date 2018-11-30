@@ -1,9 +1,9 @@
-# ChurrasDaGalera
-Aplicação para organizar churrasco da galera
+# Churras Da Galera
+Aplicação para organizar os churrascos da galera
 -----------------------
-Tecnologia Utilizada: DotNet Core e SQL Server (localDb)
+Tecnologia Utilizada: DotNet Core, EF Core e SQL Server (localDb)
 
-Front-End: Razor/HTML/Javascript/Jquery/Bootstrap
+Front-End: Razor, HTML, Javascript, Jquery, Bootstrap
 
 Arquitetura: Padrão MVC
 
